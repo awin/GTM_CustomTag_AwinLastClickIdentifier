@@ -2,9 +2,11 @@ homepage: "https://www.awin.com"
 documentation: "https://www.awin.com"
 versions:
 # Latest version
+  - sha: 4e0afefcf23729bf0f200e870fa99875f97e15fd
+    changeNotes: Updated brand ID and display name.
+# Older versions
   - sha: 6966a7c70a17fe6cf54b9e5b1b3ae271731df87f
     changeNotes: Updated template to have debugging capabilities through the console with a log, or a pixel if preferred.
-# Older versions
   - sha: 81344ca07ca7d1aa3f8ae8cdf0e05eab8d10000f
     changeNotes: Updated template to not use "Using All Pages Trigger" checkbox as it was redundant.
   - sha: 706c18199c0565063551c0e30953691b792b31a7
