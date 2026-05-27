@@ -1,10 +1,12 @@
 homepage: "https://www.awin.com"
-documentation: "https://www.awin.com"
+documentation: "https://help.awin.com/developers/docs/gtm-client-side#last-click-identifier"
 versions:
 # Latest version
+  - sha: 3dab4b15d3fa7359f66d092ac8eeb81767a88203
+    changeNotes: Remove gclid and fbclid source params. Wrap plugin code in self-execution functions. Add other minor edits.
+# Older versions
   - sha: 4e0afefcf23729bf0f200e870fa99875f97e15fd
     changeNotes: Updated brand ID and display name.
-# Older versions
   - sha: 6966a7c70a17fe6cf54b9e5b1b3ae271731df87f
     changeNotes: Updated template to have debugging capabilities through the console with a log, or a pixel if preferred.
   - sha: 81344ca07ca7d1aa3f8ae8cdf0e05eab8d10000f
