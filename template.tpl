@@ -170,10 +170,10 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
     //Variables from input fields
     const cookiePeriod = data.cookiePeriod;
     const cookieName = data.cookieName;
-    const sourceParameters = data.sourceParameters.split(",");
-    const organicFilter = data.organicFilter;
-    const awinSource = data.awinSource.split(",");
+    const sourceParameters = data.sourceParameters.split(",").map(function (p) { return p.trim(); });
+    const awinSource = data.awinSource.split(",").map(function (s) { return s.trim(); }); 
     const parseUrl = require('parseUrl');
+    const organicFilter = data.organicFilter;
     const overwriteCookieDomain = data.overwriteCookieDomain;
     const awinChannelCookieDomain = data.awinChannelCookieDomain;
 
@@ -195,6 +195,7 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
     let isOrganicJourney;
     //let existingCookieValue = getCookie(cookieName);
     queryParameters = queryParameters('query', false, null, 'query').split("&");
+  log(queryParameters);
 
     //Contains function will take a string and a substring, and check if the substring is contained in the given string. This functionality is not offered by Sandboxed JavaScript by default.
     const Contains = function (string, substring) {
@@ -287,30 +288,30 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
         var hasAwaid = false;
         var hasOtherClick = false;
         var sourceParamValue = null;
+        var sourceIsConfigured = sourceParameters.indexOf("source") > -1;
 
         for (var i = 0; i < queryParameters.length; i++) {
             queryValues = queryParameters[i].split("=");
             var paramName = queryValues[0];
-            var paramValue = queryValues[1];
+            var paramValue = queryValues[1] || "";
 
-            if (sourceParameters.indexOf(queryValues[0]) > -1) {
+            if (sourceParameters.indexOf(paramName) > -1 && paramValue !== "") {
                 matchedSourceParameter = paramValue;
             }
 
-            if (paramName === "source") {
+            //only capture "source" if the advertiser configured it
+            if (sourceIsConfigured && paramName === "source" && paramValue !== "") {
                 sourceParamValue = paramValue;
             }
-
             if (paramName === "awaid") {
                 hasAwaid = true;
             }
-
             if (paramName === "fbclid" || paramName === "gclid") {
                 hasOtherClick = true;
             }
         }
 
-        //if "source" parameter was present, then prefer it
+        //if "source" is configured and present, prefer it over other source parameters
         if (sourceParamValue !== null) {
             matchedSourceParameter = sourceParamValue;
         }
