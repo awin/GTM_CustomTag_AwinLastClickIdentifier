@@ -195,7 +195,6 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
     let isOrganicJourney;
     //let existingCookieValue = getCookie(cookieName);
     queryParameters = queryParameters('query', false, null, 'query').split("&");
-  log(queryParameters);
 
     //Contains function will take a string and a substring, and check if the substring is contained in the given string. This functionality is not offered by Sandboxed JavaScript by default.
     const Contains = function (string, substring) {
